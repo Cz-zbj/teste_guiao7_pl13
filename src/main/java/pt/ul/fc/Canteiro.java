@@ -11,7 +11,7 @@ public class Canteiro {
     public Canteiro() {}
 
     /** Deixa o canteiro repousar; a terra volta a ficar dura. */
-    @StateRefinement(from="true", to="true")
+    @StateRefinement(from="colhido()", to="duro()")
     public void repousar() {}
 
     /** Lavra a terra, deixando-a solta. */
@@ -19,14 +19,14 @@ public class Canteiro {
     public void lavrar() {}
 
     /** Semeia (com ou sem adubo). */
-    @StateRefinement(from="true", to="true")
+    @StateRefinement(from="solto() || adubado()", to="semeado()")
     public void semear() {}
 
     /** Aduba a terra solta. */
-    @StateRefinement(from="true", to="true")
+    @StateRefinement(from="solto()", to="adubado()")
     public void adubar() {}
 
     /** Colhe o que foi semeado. */
-    @StateRefinement(from="true", to="true")
+    @StateRefinement(from="semeado()", to="colhido()")
     public void colher() {}
 }
